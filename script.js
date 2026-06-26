@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
 function addTask() {
     const newTask = todoInput.value.trim();
-    if (newTask !== " ") {
+    if (newTask !== "") {
         todo.push({
             text: newTask,
             disabled: false
