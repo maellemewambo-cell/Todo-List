@@ -1,6 +1,6 @@
 :root{
     --gradient:linear-gradient(180deg,
-    rgba(45, 112,1253, 0.73)0%,
+    rgba(45, 112,125, 0.73)0%,
     #163e92 100%
     );
     --dark:#001747;
@@ -150,6 +150,7 @@ Here we are targeting the checkmark when it is uncheck
 */
 
 input[type="checkbox"]{
+ 
     appearance: none;
     -webkit-appearance:none;
     -moz-appearance:none;
@@ -163,7 +164,7 @@ input[type="checkbox"]::before{
     height:2rem;
     font-size: 1.7rem;
     text-align: center;
-    border:0.06rem solid var(grey-border);
+    border:0.06rem solid var(--grey-border);
     border-radius: 50%;
     color:transparent;
 }
@@ -234,12 +235,12 @@ input[type="checkbox"]:checked::before{
 }
 
 .scroll::-webkit-scrollbar-thumb{
-    background-color: var(--blue);
+    background-color: blue;
     border-radius: 0.5rem;
 }
 
 .scroll::-webkit-scrollbar-track{
-   display: none;
+   background: transparent;
 }
 
 #deleteButton{
