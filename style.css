@@ -123,6 +123,15 @@ li{
 }
 
 #todoList p{
+    display: flex;
+    gap: 1rem;
+    color: var(--dark);
+    align-items: center;
+    font-size: 1.5rem;
+
+}
+
+#todoList .disabled{
     color: #8f98a8;
 
 }
@@ -139,6 +148,14 @@ content: "\2713"; → dit au navigateur d'afficher le symbole ✓ à cet endroit
 inline-block add element one next to the other as a block
 Here we are targeting the checkmark when it is uncheck
 */
+
+input[type="checkbox"]{
+    appearance: none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    cursor: pointer;
+}
+
 input[type="checkbox"]::before{
     content: "\2713";
     display: inline-block;
@@ -155,7 +172,7 @@ input[type="checkbox"]::before{
 Here we are targeting the checkmark after it have been checked
 
 */
-input[type="checkbox"]::before::after{
+input[type="checkbox"]:checked::before{
     color: var(--white);
     background-color: var(--green);
     border: 0.06rem solid var(--green);

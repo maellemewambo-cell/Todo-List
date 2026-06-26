@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function (){
     deleteButton.addEventListener('click', deleteAllTasks);
     displayTasks();
 });
-    
+
+// The addTask function is responsible for adding a new task to the todo list. It retrieves the value from the input field, trims any leading or trailing whitespace, and checks if the input is not empty. If the input is valid, it creates a new task object with the text and a disabled property set to false, pushes it to the todo array, saves the updated array to local storage, clears the input field, and calls displayTasks() to update the displayed list of tasks.
 
 function addTask() {
     const newTask = todoInput.value.trim();
@@ -39,20 +40,40 @@ function addTask() {
 }
 }
 
-function deleteAllTasks() {
+function editTask(index) {
+    
+}
 
+function deleteAllTasks() {
+    todo = [];
+    saveToLocalStorage();
+    displayTasks();
 }
 
 function displayTasks() {
     todoList.innerHTML = "";
-    todo.foreach((task,index) => {
+    todo.forEach((item,index) => {
         const p = document.createElement("p");
         p.innerHTML = `
         <div class = "todo-container">
-            <input type = "checkbox" class = "todo-checkbox">
+            <input type = "checkbox" class = "todo-checkbox" 
+            id = "input-${index}" ${item.disabled ? "checked" : ""}>
+            <p id="todo-${index}" class = "${item.disabled ? "disabled" : ""}"
+            onclick="editTask(${index})">${item.text}
+            </p>
         </div>
-        `
-    })
+        `;
+        p.querySelector(".todo-checkbox").addEventListener("change", () => {
+            toggleTask(index);
+        });
+        todoList.appendChild(p);
+    });
+}
+
+function toggleTask(index) {
+    todo[index].disabled = !todo[index].disabled;
+    saveToLocalStorage();
+    displayTasks();
 }
 
 //JSON.stringify() is a method that converts a JavaScript object or value to a JSON string. In this case, it is used to convert the todo array into a JSON string so that it can be stored in local storage. The localStorage.setItem() method is then used to save the JSON string under the key 'todo' in the browser's local storage.
