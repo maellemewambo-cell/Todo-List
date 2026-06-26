@@ -13,16 +13,49 @@ const deleteButton = document.getElementById('deleteButton');
 
 // event.preventDefault() is used to prevent the default action of an event from occurring. In this case, it prevents the default behavior of the Enter key, which is to submit a form or trigger a button click. By calling event.preventDefault(), we can stop that default behavior and handle the Enter key press in our own way, such as adding a task to the list without submitting a form.
 
-Document.addEventListener('DOMContentLoaded', function (){
+document.addEventListener('DOMContentLoaded', function (){
     addButton.addEventListener("click", addTask);
     todoInput.addEventListener('keydown',function(event){
         if(event.key === 'Enter'){
             event.preventDefault();
             addTask();
         }
-    })
-})
+    });
+    deleteButton.addEventListener('click', deleteAllTasks);
+    displayTasks();
+});
+    
 
 function addTask() {
+    const newTask = todoInput.value.trim();
+    if (newTask !== " ") {
+        todo.push({
+            text: newTask,
+            disabled: false
+        });
+        saveToLocalStorage();
+        todoInput.value = "";
+        displayTasks();
+}
+}
 
+function deleteAllTasks() {
+
+}
+
+function displayTasks() {
+    todoList.innerHTML = "";
+    todo.foreach((task,index) => {
+        const p = document.createElement("p");
+        p.innerHTML = `
+        <div class = "todo-container">
+            <input type = "checkbox" class = "todo-checkbox">
+        </div>
+        `
+    })
+}
+
+//JSON.stringify() is a method that converts a JavaScript object or value to a JSON string. In this case, it is used to convert the todo array into a JSON string so that it can be stored in local storage. The localStorage.setItem() method is then used to save the JSON string under the key 'todo' in the browser's local storage.
+function saveToLocalStorage() {
+    localStorage.setItem("todo", JSON.stringify(todo));
 }

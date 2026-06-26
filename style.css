@@ -224,3 +224,15 @@ input[type="checkbox"]::before::after{
 .scroll::-webkit-scrollbar-track{
    display: none;
 }
+
+#deleteButton{
+    color: var(--grey);
+    font-size: 1.2rem;
+    border: none;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+#deleteButton:hover{
+    cursor: pointer;
+    color: darkblue;
+}
